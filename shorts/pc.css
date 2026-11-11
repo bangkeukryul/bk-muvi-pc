@@ -1,0 +1,513 @@
+/* pc.css — BK뮤비 PC: 넓은 화면(가로 1100px 이상) 배치
+   body.pc 일 때만 바뀜 → 좁은 창 · 휴대폰에서는 원래 BK뮤비 모양 그대로
+   ┌──────────┬──────────────────────────┬──────────────────┐
+   │ 단계 목록 │  큰 미리 보기 (따라옴)      │  설정 칸 (단계 화면) │
+   └──────────┴──────────────────────────┴──────────────────┘ */
+#pcNav{display:none}
+body.pc header.top{padding:10px 20px}
+body.pc header.top h1{font-size:1.2rem}
+
+/* ── 기본 폭 ── */
+body.pc .wrap{max-width:1180px;padding:0 24px 80px}
+body.pc.pcWork .wrap{max-width:none;margin:0 0 0 232px;padding:0 24px 80px}
+
+/* ── 왼쪽 단계 목록 ── */
+body.pc.pcWork #pcNav{display:flex;flex-direction:column;gap:6px;position:fixed;left:0;top:50px;bottom:0;width:216px;padding:14px 12px;background:#fff;border-right:1.5px solid var(--line);overflow:auto;z-index:18}
+#pcNav .pcT{font-size:.78rem;font-weight:900;color:var(--sub);margin:2px 4px 4px}
+#pcNav button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:9px 10px;font-weight:800;font-size:.9rem;color:var(--ink)}
+#pcNav button .e{font-size:1.2rem;width:26px;text-align:center;flex:none}
+#pcNav button small{display:block;font-weight:700;font-size:.72rem;color:var(--sub)}
+#pcNav button:hover{border-color:#c4b5fd;background:#faf5ff}
+#pcNav button.on{background:var(--p);border-color:var(--p);color:#fff}
+#pcNav button.on small{color:#ede9fe}
+#pcNav button.ok:not(.on) .e::after{content:"✓";color:var(--ok);font-weight:900;margin-left:-4px;font-size:.8rem}
+#pcNav hr{border:0;border-top:1px dashed var(--line);margin:6px 0;width:100%}
+#pcNav .pcKey{margin-top:auto;font-size:.72rem;color:var(--sub);line-height:1.6;padding:8px 4px 0}
+
+/* ── 첫 화면(단계 카드): 넓게 여러 줄 ── */
+body.pc .hubTop{max-width:880px}
+body.pc .modes{grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+body.pc .mode{min-height:120px}
+
+/* ── 단계 화면: 위쪽 머리줄 ── */
+body.pc .stHead{top:50px;padding:10px 0}
+body.pc .stNav{max-width:none}
+
+/* ── 단계 화면: 미리 보기(왼쪽 크게) + 설정(오른쪽) 두 칸 ── */
+body.pc .stBody:has(> .pvStick){display:grid;grid-template-columns:minmax(0,1.35fr) minmax(400px,1fr);column-gap:22px;align-items:start;padding:16px}
+body.pc .stBody:has(> .pvStick) > *{grid-column:2;min-width:0}
+body.pc .stBody:has(> .pvStick) > .pvStick{grid-column:1;grid-row:1 / span 50;position:sticky;top:112px;padding:0;border-radius:16px}
+body.pc .pvStick .pv canvas,
+body.pc .pvStick.s3 .pv canvas{width:100%;height:auto;max-height:calc(100vh - 230px);object-fit:contain}
+body.pc .pvStick .pv.v916 canvas,
+body.pc .pvStick.s3 .pv.v916 canvas{width:auto;height:calc(100vh - 230px);max-width:100%}
+body.pc .pvStick .tp{margin:8px 0 0}
+body.pc .pvStick.dark{padding:10px}
+/* 5단계(최종 편집)는 편집 줄이 넓어야 해서: 위에 미리 보기 · 아래 넓은 편집 칸 */
+body.pc .stBody:has(> .pvStick.dark){display:block}
+body.pc .stBody > .pvStick.dark{position:sticky;top:112px;z-index:12;margin-bottom:12px}
+body.pc .stBody > .pvStick.dark .pv canvas{width:auto;max-width:100%;height:auto;max-height:42vh;margin:0 auto}
+body.pc .stBody > .pvStick.dark .pv.v916 canvas{height:42vh}
+/* 다른 곳에 있는 미리 보기(예: 2단계 ③ 장면)도 조금 크게 */
+body.pc .sub .pvStick .pv canvas{max-height:46vh}
+
+/* 장면 칸 목록: 넓으면 2줄 → 오른쪽 칸 폭에 맞춰 1줄, 단계 화면 밖은 3줄 */
+body.pc .stBody:has(> .pvStick) .grid{grid-template-columns:1fr}
+body.pc .grid{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}
+
+/* 타임라인: 넓은 화면에서 더 높게 */
+body.pc .tl .in{height:210px}
+
+/* ── 아래에서 올라오던 창 → 가운데 창 ── */
+body.pc .sheetBg{align-items:center}
+body.pc .sheetBox{max-width:760px;max-height:86vh;border-radius:20px;box-shadow:0 20px 60px #0005}
+body.pc .scwBox{max-width:980px;max-height:92vh;border-radius:20px}
+body.pc #scwPv .pv canvas{max-height:52vh}
+body.pc #scwPv .pv.v916 canvas{height:52vh}
+
+/* ── 내 뮤비 목록: 2줄 ── */
+body.pc .plist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+body.pc .homeBig{max-width:560px}
+
+/* ── 🖥 설치형 프로그램(파이썬)으로 열었을 때: 내 PC 정보 ── */
+.pcInfo{display:flex;flex-direction:column;gap:2px;font-size:.74rem;color:var(--sub);background:#f5f3ff;border:1.5px solid #ddd6fe;border-radius:12px;padding:8px 10px;line-height:1.45}
+.pcInfo b{color:var(--ink);font-size:.8rem}
+.pcInfo .pcEng{color:var(--p);font-weight:800}
+.pcInfo small{font-size:.68rem;opacity:.8}
+#pcNav .pcInfo{margin-top:auto}
+.pcInfoHome{margin-top:14px}
+.pcInfoHome .pcInfo{flex-direction:row;flex-wrap:wrap;align-items:center;gap:4px 14px;font-size:.85rem}
+.pcInfoHome .pcInfo b{font-size:.9rem}
+
+/* ── ❓ 사용법 버튼 (첫 화면) ── */
+.pcInfoHome{display:flex;flex-direction:column;gap:8px}
+.pcGuideBtn{align-self:flex-start;flex-direction:row;gap:8px;font-size:1rem;border-color:#c4b5fd!important}
+.pcGuideBtn small{font-weight:700;color:var(--sub);font-size:.8rem}
+
+/* ── 🖥 PC 크기: 마우스로 쓰기 편하게 큼직하게 (넓은 창에서만) ── */
+body.pc{font-size:17px}
+body.pc .btn{padding:12px 18px;font-size:1rem;border-radius:14px}
+body.pc .btn.sm{padding:8px 14px;font-size:.9rem;border-radius:12px}
+body.pc .btn.big{padding:16px;font-size:1.12rem}
+body.pc .btn:not(:disabled):hover{filter:brightness(1.06);box-shadow:0 3px 10px #7c3aed22}
+body.pc .chips{gap:8px}
+body.pc .chip{padding:8px 15px;font-size:.95rem}
+body.pc .chip:hover{border-color:#c4b5fd}
+body.pc .field{margin:14px 0}
+body.pc .field>label{font-size:.98rem;margin-bottom:6px}
+body.pc .field input[type=text],body.pc .field textarea,body.pc .field select{padding:12px 14px;font-size:1rem;border-radius:14px}
+body.pc .subbar{gap:8px;margin:12px 0 14px}
+body.pc .subbar button{padding:10px 16px;font-size:.95rem}
+body.pc .stHead .stT b{font-size:1.15rem}
+body.pc .stNav{gap:12px}
+body.pc .sub{margin-top:16px;padding-top:14px}
+body.pc .sub>h3{font-size:1.05rem}
+body.pc .note{padding:10px 14px;font-size:.92rem}
+body.pc .muted{font-size:.9rem}
+body.pc .sc{padding:10px;gap:12px}
+body.pc .sc .th{width:150px}
+body.pc .sc .th.v916{width:90px}
+body.pc .sc .hd{font-size:.95rem}
+body.pc .stp{width:120px}
+body.pc .stp.v916{width:72px}
+body.pc .pvStick .tp .btn{padding:10px 16px}
+body.pc .tp .tm{font-size:.92rem;min-width:100px}
+body.pc input[type=range]{height:22px;cursor:pointer}
+body.pc .tl{border-radius:14px}
+body.pc .sheetHd{padding:14px 18px;font-size:1.05rem}
+body.pc .sheetBd{padding:14px 18px 22px}
+body.pc .pitem{padding:12px 14px}
+body.pc #pcNav button{padding:11px 12px;font-size:.95rem}
+
+/* ── ✨ 음악에 저절로 맞추기 (pc-auto.js) ── */
+.pcaCard{border:2px solid #f9a8d4;border-radius:16px;padding:10px 14px;margin:0 0 14px;background:linear-gradient(180deg,#fdf2f8,#fff)}
+.pcaCard>summary{font-weight:900;font-size:1.05rem;cursor:pointer;padding:4px 0}
+.pcsTag{font-size:.72rem;font-weight:800;color:#fff;background:var(--p);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.note.green{background:#dcfce7}
+.decorChips .chip{font-size:.88rem}
+
+/* ══════════ 🎨 v4: PC 새 모양 — 파스텔 바탕 · 단계마다 다른 색 · 큰 제목 · 진행 카드 ══════════
+   --sb 바탕(아주 연함) · --sm 테두리(연함) · --sa 가운데 색 · --sd 진한 색(선택) · --st 글씨 */
+body.pc{--sb:#f1effd;--sm:#d9d5f7;--sa:#7f77dd;--sd:#534ab7;--st:#3c3489}
+body.pc.pcS1{--sb:#eeedfe;--sm:#cecbf6;--sa:#7f77dd;--sd:#534ab7;--st:#3c3489}
+body.pc.pcS2{--sb:#e6f1fb;--sm:#b5d4f4;--sa:#378add;--sd:#185fa5;--st:#0c447c}
+body.pc.pcS3{--sb:#e1f5ee;--sm:#9fe1cb;--sa:#1d9e75;--sd:#0f6e56;--st:#085041}
+body.pc.pcS4{--sb:#fdf3e1;--sm:#fac775;--sa:#ef9f27;--sd:#a3620c;--st:#633806}
+body.pc.pcS5{--sb:#fbeaf0;--sm:#f4c0d1;--sa:#d4537e;--sd:#993556;--st:#72243e}
+body.pc{--p:var(--sd);--p2:var(--sa);--bg:var(--sb);--line:var(--sm);background:var(--sb);transition:background .35s}
+body.pc header.top{background:var(--sd);box-shadow:none;transition:background .35s}
+
+/* 왼쪽 단계 목록: 번호 동그라미 · 단계 색 · 선택은 진하게 */
+body.pc.pcWork #pcNav{background:#ffffffcc;border-right:0;box-shadow:2px 0 0 var(--sm);gap:8px;width:236px}
+body.pc.pcWork .wrap{margin-left:252px}
+#pcNav button{border:0;background:transparent;border-radius:14px;padding:12px;font-size:1rem;color:#334155;transition:background .2s}
+#pcNav button:hover{background:#f1f5f9}
+#pcNav .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-style:normal;font-size:.78rem;font-weight:900;margin-right:6px;color:#fff;background:#94a3b8;vertical-align:1px}
+#pcNav .st1 .num{background:#7f77dd}#pcNav .st2 .num{background:#378add}#pcNav .st3 .num{background:#1d9e75}#pcNav .st4 .num{background:#ef9f27}#pcNav .st5 .num{background:#d4537e}
+#pcNav .st1{--c1:#eeedfe;--c2:#534ab7}#pcNav .st2{--c1:#e6f1fb;--c2:#185fa5}#pcNav .st3{--c1:#e1f5ee;--c2:#0f6e56}#pcNav .st4{--c1:#fdf3e1;--c2:#a3620c}#pcNav .st5{--c1:#fbeaf0;--c2:#993556}
+#pcNav button[class*=st]:hover{background:var(--c1)}
+#pcNav button.on{background:var(--c2,var(--sd));color:#fff;box-shadow:0 4px 12px #0002;transform:translateX(4px)}
+#pcNav button.on .num{background:#fff;color:var(--c2,var(--sd))}
+#pcNav button.ok:not(.on){background:#f0fdf4}
+#pcNav button.ok:not(.on) .e::after{content:none}
+#pcNav button.ok:not(.on) .num{background:#16a34a}
+#pcNav button.ok:not(.on) .num{font-size:0}
+#pcNav button.ok:not(.on) .num::before{content:"✓";font-size:.8rem}
+
+/* 단계 머리: 큰 제목 + 한 줄 설명 */
+body.pc .stHead{background:var(--sb);padding:18px 0 14px;gap:16px;transition:background .35s}
+body.pc .stT{display:flex;flex-direction:column;gap:2px}
+body.pc .stT>span{font-size:.85rem;font-weight:900;color:var(--sa);letter-spacing:.04em}
+body.pc .stHead .stT b{font-size:1.7rem;color:var(--st);line-height:1.25}
+body.pc .stT .pcDesc{font-size:.95rem;font-weight:700;color:#475569}
+body.pc .stHead .btn{background:#fff;border:0;color:var(--st)}
+
+/* 단계 본문: 흰 카드, 단계 색 테두리 */
+body.pc .stBody{border:0;border-radius:22px;padding:24px 26px;box-shadow:0 0 0 2px var(--sm),0 10px 30px #0000000d;background:#fff}
+body.pc .sub{border-top:0;margin-top:18px;padding-top:0}
+body.pc .sub>h3{font-size:1.2rem;color:var(--st)}
+body.pc .field>label{color:var(--st);font-weight:900}
+body.pc .field input[type=text],body.pc .field textarea,body.pc .field select{border-color:var(--sm);background:#fcfcff}
+body.pc .field input[type=text]:focus,body.pc .field textarea:focus,body.pc .field select:focus{border-color:var(--sa);box-shadow:0 0 0 4px var(--sb);outline:0}
+
+/* 작은 단계 ①②③ → 화살표로 이어진 진행 카드 */
+body.pc .subbar{overflow:visible;gap:34px;margin:4px 0 22px;padding:2px}
+body.pc .subbar button{position:relative;flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid var(--sm);background:#fff;border-radius:16px;padding:14px 12px;color:var(--st);font-size:1.05rem;transition:transform .15s,box-shadow .15s}
+body.pc .subbar button small{font-size:.82rem;font-weight:700;color:#64748b}
+body.pc .subbar button:hover{transform:translateY(-2px);box-shadow:0 6px 14px #0000000f}
+body.pc .subbar button:not(:last-child)::after{content:"▶";position:absolute;right:-26px;top:50%;transform:translateY(-50%);color:var(--sa);font-size:.9rem}
+body.pc .subbar button.on{background:var(--sd);border-color:var(--sd);color:#fff;transform:scale(1.03);box-shadow:0 8px 20px #0000001f}
+body.pc .subbar button.on small{color:#ffffffd9}
+body.pc .subbar button:has(~ button.on){background:#f0fdf4;border-color:#86efac;color:#166534}
+body.pc .subbar button:has(~ button.on) .sn::before{content:"✓ "}
+body.pc .subbar button:has(~ button.on) small{color:#15803d}
+body.pc .subbar button.on::before{content:"";position:absolute;left:50%;bottom:-12px;margin-left:-9px;border:9px solid transparent;border-top-color:var(--sd);border-bottom:0}
+
+/* 버튼 · 칩: 단계 색 */
+body.pc .btn.ghost{border-color:var(--sm)}
+body.pc .btn.subnext{background:var(--sb);color:var(--st);border:2px dashed var(--sm);font-weight:900}
+body.pc .stNav .btn{padding:16px;font-size:1.08rem}
+body.pc .stNav .btn.ghost{background:#fff;border:0;box-shadow:0 0 0 2px var(--sm)}
+body.pc .chip.on{background:var(--sd);border-color:var(--sd)}
+body.pc .note{background:var(--sb);border-radius:12px}
+body.pc .stBody details{border-color:var(--sm)}
+
+/* 첫 화면(전체 단계) 카드 간격 넉넉하게 */
+body.pc .hubTop{margin-top:18px}
+body.pc .mode{min-height:132px;border-radius:22px}
+
+/* ── 📋 복사 알림 카드 (오른쪽 아래) ── */
+#pcCopy{position:fixed;right:22px;bottom:22px;z-index:90;width:420px;max-width:calc(100vw - 44px);background:#fff;border-radius:18px;box-shadow:0 0 0 2px #f4c0d1,0 16px 40px #0003;padding:14px 16px;display:none;font-size:.95rem}
+#pcCopy.show{display:block;animation:pcIn .25s}
+@keyframes pcIn{from{transform:translateY(16px);opacity:0}}
+#pcCopy .hd{display:flex;align-items:flex-start;gap:8px;color:#72243e}
+#pcCopy .hd b{flex:1;line-height:1.4}
+#pcCopy .hd button{border:0;background:#fbeaf0;color:#72243e;border-radius:50%;width:28px;height:28px;font-weight:900;cursor:pointer}
+#pcCopy .bt{display:flex;gap:8px;margin-top:10px}
+#pcCopy .bt button{flex:1;border:0;border-radius:12px;padding:9px;font-weight:800;cursor:pointer;background:#fbeaf0;color:#72243e}
+#pcCopy .bt button[data-k=c]{background:#d4537e;color:#fff}
+#pcCopy textarea{display:none;width:100%;box-sizing:border-box;margin-top:10px;height:200px;border:1.5px solid #f4c0d1;border-radius:12px;padding:10px;font-size:.85rem;line-height:1.5;resize:vertical}
+#pcCopy.open textarea{display:block}
+
+/* ══════════ v5: 첫 화면 단계 카드 = 단계 색 파스텔 · 안내 페이지 · 왼쪽 메뉴 여유 ══════════ */
+body.pc:not(.pcWork) .wrap{max-width:1240px}
+body.pc .homeBig{max-width:none}
+
+/* 카드 5개: 크게, 화살표로 이어서 */
+body.pc #hub .hubTop{max-width:none;background:#fff;border-radius:20px;padding:18px 22px;box-shadow:0 0 0 2px var(--sm)}
+body.pc #hub .modes{grid-template-columns:repeat(5,minmax(0,1fr));gap:40px;margin-top:26px}
+body.pc #hub .mode{--c1:#eeedfe;--c2:#cecbf6;--c3:#534ab7;--c4:#3c3489;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:270px;padding:24px 20px 20px;border-radius:24px;background:var(--c1);color:var(--c4);box-shadow:0 0 0 2px var(--c2);transition:transform .15s,box-shadow .15s;cursor:pointer}
+body.pc #hub .mode.g2{--c1:#e6f1fb;--c2:#b5d4f4;--c3:#185fa5;--c4:#0c447c}
+body.pc #hub .mode.g3{--c1:#e1f5ee;--c2:#9fe1cb;--c3:#0f6e56;--c4:#085041}
+body.pc #hub .mode.g4{--c1:#fdf3e1;--c2:#fac775;--c3:#a3620c;--c4:#633806}
+body.pc #hub .mode.g5{--c1:#fbeaf0;--c2:#f4c0d1;--c3:#993556;--c4:#72243e}
+body.pc #hub .mode:hover{transform:translateY(-4px);box-shadow:0 0 0 3px var(--c3),0 14px 28px #0000001a}
+body.pc #hub .mode:not(:last-child)::after{content:"▶";position:absolute;right:-29px;top:50%;transform:translateY(-50%);color:#a5a1d8;font-size:1.1rem}
+body.pc #hub .mode .ic{display:flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:20px;background:#fff;box-shadow:0 0 0 2px var(--c2);font-size:2.2rem}
+body.pc #hub .mode b{font-size:1.25rem;color:var(--c4)}
+body.pc #hub .mode small{font-size:.92rem;line-height:1.55;color:var(--c4);opacity:.85}
+body.pc #hub .mode .stt{display:inline-block;background:var(--c3);color:#fff;border-radius:8px;padding:1px 8px;margin-bottom:4px}
+body.pc #hub .mode.todo{outline:0;box-shadow:0 0 0 4px var(--c3),0 14px 30px #0000001f}
+body.pc #hub .mode .todoTag{right:16px;top:-13px;background:var(--c3);color:#fff;font-size:.82rem;padding:4px 12px}
+body.pc #hub .mode .ic:has(+ b){}
+body.pc .prog>i{background:var(--sd)}
+body.pc.pcGuiding #hub{display:none}
+
+/* 왼쪽 메뉴: 간격 넉넉하게 · 아이콘도 단계 색 동그라미 */
+body.pc.pcWork #pcNav{gap:12px;padding:18px 14px}
+#pcNav button{padding:14px 12px;line-height:1.35}
+#pcNav button .e{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border-radius:11px;background:#f1f5f9;font-size:1.15rem}
+#pcNav button[class*=st] .e{background:var(--c1)}
+#pcNav button.on .e{background:#ffffff33}
+#pcNav hr{margin:10px 0}
+
+/* 📖 단계 안내 페이지 */
+#pcGuide{background:#fff;border-radius:26px;padding:30px 36px 28px;margin:20px 0;box-shadow:0 0 0 2px var(--sm),0 14px 34px #0000000f;color:var(--st)}
+#pcGuide .gBack{border:0;background:var(--sb);color:var(--st);border-radius:12px;padding:9px 14px;font-weight:800;cursor:pointer}
+#pcGuide .gHead{display:flex;align-items:center;gap:18px;margin:20px 0 10px}
+#pcGuide .gIc{display:flex;align-items:center;justify-content:center;width:84px;height:84px;border-radius:24px;background:var(--sb);box-shadow:0 0 0 2px var(--sm);font-size:2.8rem}
+#pcGuide .gN{font-weight:900;color:var(--sa);font-size:.95rem}
+#pcGuide h2{margin:2px 0 0;font-size:2rem;color:var(--st)}
+#pcGuide .gWhat{font-size:1.15rem;line-height:1.7;margin:12px 0 20px;color:#334155}
+#pcGuide .gGrid{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+#pcGuide .gBox{background:var(--sb);border-radius:18px;padding:18px 22px}
+#pcGuide .gBox h3{margin:0 0 8px;font-size:1.08rem;color:var(--st)}
+#pcGuide .gBox h3:not(:first-child){margin-top:16px}
+#pcGuide .gBox ol{margin:0;padding-left:22px;line-height:2;font-size:1.05rem;color:#334155}
+#pcGuide .gBox p{margin:0;line-height:1.6;color:#334155}
+#pcGuide .gTip{background:#fffbeb;border-radius:14px;padding:12px 16px;margin:18px 0;color:#713f12;line-height:1.6}
+#pcGuide .gGo{display:block;width:100%;border:0;border-radius:18px;padding:20px;font-size:1.3rem;font-weight:900;color:#fff;background:var(--sd);cursor:pointer;box-shadow:0 10px 24px #0000001f}
+#pcGuide .gGo:hover{filter:brightness(1.08)}
+#pcGuide .gSkip{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;color:#64748b;font-size:.95rem;cursor:pointer}
+
+/* ── 단계 안 작은 메뉴들: 촘촘하지 않게 간격 넉넉히 ── */
+body.pc .stBody .field{margin:26px 0}
+body.pc .stBody .field>label{display:block;margin-bottom:12px;font-size:1.05rem}
+body.pc .stBody .chips{gap:12px;margin:4px 0 8px}
+body.pc .stBody .chip{padding:10px 20px;font-size:1rem;border-radius:999px}
+body.pc .stBody .chip+.chip{margin-left:0}
+body.pc .stBody p.muted{margin:10px 0 0;line-height:1.6}
+body.pc .stBody .sub{margin-top:30px}
+body.pc .stBody .sub>h3{margin-bottom:14px}
+body.pc .stBody .pickRow{padding:16px 18px;margin:0 0 12px;border-radius:14px;font-size:1.02rem;border-color:var(--sm)}
+body.pc .stBody .pickRow .k{margin-right:14px}
+body.pc .stBody textarea{margin-top:4px;line-height:1.6}
+body.pc .stBody .btn.main.big,body.pc .stBody .btn.big{margin-top:18px}
+body.pc .stBody .note{padding:16px 20px;line-height:1.7;margin-bottom:8px}
+body.pc .stBody .note .btn{margin-left:8px}
+body.pc .stBody details>summary{padding:6px 0}
+body.pc .stBody .row,body.pc .stBody .btns{gap:12px}
+
+/* ══════════ v6: 진한 색은 「지금 선택한 것」에만 · 나머지 버튼은 연한 파스텔 ══════════
+   진하게 남는 것: 왼쪽 메뉴 지금 단계 · ①②③ 지금 칸 · 고른 칩 · 첫 화면 「지금 할 차례」 테두리 */
+body.pc{--sx:#e3e0fb}
+body.pc.pcS1{--sx:#dedbf9}
+body.pc.pcS2{--sx:#d3e6f8}
+body.pc.pcS3{--sx:#c9ecdf}
+body.pc.pcS4{--sx:#fbe3b8}
+body.pc.pcS5{--sx:#f8d5e2}
+body.pc .btn.main,body.pc .btn.pink,body.pc .btn.ok{background:var(--sx);color:var(--st);box-shadow:inset 0 0 0 1.5px var(--sm)}
+body.pc .btn.main:not(:disabled):hover,body.pc .btn.pink:not(:disabled):hover,body.pc .btn.ok:not(:disabled):hover{filter:none;background:var(--sm);box-shadow:inset 0 0 0 1.5px var(--sa)}
+body.pc .btn:not(.main):not(.pink):not(.ok):not(.ghost){background:var(--sb);color:var(--st)}
+body.pc .btn.ghost{background:#fff;color:var(--st)}
+body.pc .gemSong{background:#fdf6fb;border:1.5px solid #f4d6e6}
+body.pc .gemSong b{color:#993556}
+body.pc .stNav .btn.main{background:var(--sx);color:var(--st)}
+/* 고른 칩은 진하게 (선택 표시) */
+body.pc .chip.on{background:var(--sd);border-color:var(--sd);color:#fff}
+
+/* 맨 위 제목 줄(대문): 진한 색 대신 흰색 + 아래에 얇은 단계 색 줄 */
+body.pc header.top{background:#fff;color:#1e293b;box-shadow:0 3px 0 var(--sm)}
+body.pc header.top h1{color:#1e293b}
+body.pc header.top #homeBtn{background:var(--sb);color:var(--st);border:0}
+
+/* ══════════ v7: 🎯 한 번에 맞추기 · 전주 · 간주 · 추천 장 수 · 공유 대신 폴더 ══════════ */
+.psCard{border-color:#9fe1cb;background:linear-gradient(180deg,#effaf5,#fff)}
+.psLive{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+.psNow{flex:1;min-width:150px;font-weight:900;color:#085041;background:#e1f5ee;border-radius:12px;padding:10px 14px}
+.psTap{flex:1.4;min-width:220px}
+.psGaps{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.psGap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:1.5px solid #e2e8f0;border-radius:14px;padding:10px 12px}
+.psGap .psT{font-weight:900;min-width:80px}
+.psGap .psR{color:#64748b;font-size:.9rem;min-width:120px}
+.psGap .psOn{color:#0f6e56;font-weight:800}
+.psChk{display:flex;align-items:center;gap:6px;font-weight:700;cursor:pointer}
+.psBadge{position:absolute;left:12px;top:12px;z-index:5;background:#1e293bcc;color:#fff;font-weight:900;border-radius:999px;padding:6px 14px;font-size:.95rem;pointer-events:none}
+.ln.pcQ{background:#fef9c3;border-radius:8px}
+.ln.pcQ .x::before{content:"🟡 "}
+.pcFree{display:block;width:100%;margin-top:10px}
+.pcFree small{display:block;font-weight:700;opacity:.8;font-size:.82rem}
+.psRec{background:#f0fdf4;border:1.5px solid #86efac;border-radius:14px;padding:12px 14px;margin:12px 0;line-height:1.6}
+.psRec .row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+#pcCopy .shSteps{margin:10px 0 0;padding-left:20px;line-height:1.7;color:#334155}
+#pcCopy .shSteps small{color:#64748b}
+
+/* ══════════ v8: 1단계 상자 · 노래 넣기 3칸 · 끌어다 놓기 · 「다음」 막대 없애기 ══════════ */
+.mkBox{border:2px solid var(--line);border-radius:18px;padding:16px 18px;margin:16px 0;background:#fff}
+.mkBox>.mkBoxH{margin:0 0 12px;font-size:1.15rem;color:var(--st,var(--ink));display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.mkBox>.mkBoxH .muted{font-size:.85rem;font-weight:700}
+.mkBox.mkWait{background:#f8fafc;border-style:dashed;opacity:.85}
+.mkBox.mkWait p{margin:0}
+.mkGemBox{border-color:#f4d6e6;background:#fdf6fb;margin-top:28px}
+.mkGemBox>.mkBoxH{color:#993556}
+.mkGemBox .btn{width:100%}
+body.pc .mkBox textarea#mkAns{min-height:300px}
+.songPick3{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pcSongs{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.pcSongs button{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px;cursor:pointer}
+.pcSongs button:hover{border-color:var(--sa,var(--p));background:var(--sb,#f5f3ff)}
+body.pcDrop::after{content:"🎵 여기에 놓으면 노래가 들어가요";position:fixed;inset:12px;z-index:200;display:flex;align-items:center;justify-content:center;border:4px dashed var(--sa,#7c3aed);border-radius:24px;background:#ffffffd9;font-size:1.6rem;font-weight:900;color:var(--st,#3c3489);pointer-events:none}
+/* 작은 단계 안의 「다음: ○ ▶」 막대는 PC에서 없애고, 위의 다음 칸에 「👉 다음」 */
+body.pc .btn.subnext{display:none}
+body.pc .subbar button.pcNext{border-color:var(--sa);box-shadow:0 0 0 3px var(--sb),0 0 18px var(--sm);animation:pcGlow 1.6s ease-in-out infinite}
+@keyframes pcGlow{50%{box-shadow:0 0 0 3px var(--sm),0 0 24px var(--sa)}}
+body.pc .subbar .pcNextTag{position:absolute;top:-12px;right:12px;font-style:normal;font-size:.78rem;font-weight:900;background:var(--sd);color:#fff;border-radius:999px;padding:2px 10px}
+body.pcApp #instBox{display:none}
+
+/* ══════════ v9: 큰 글 칸 버튼줄 · 건너뛰기 버튼 · 악기 칩 ══════════ */
+.taTools{display:flex;justify-content:flex-end;gap:6px;margin:0 0 6px}
+.taTools button{border:1.5px solid var(--line);background:#fff;color:var(--st,var(--ink));border-radius:999px;padding:5px 12px;font-weight:800;font-size:.85rem;cursor:pointer}
+.taTools button:hover{background:var(--sb,#f5f3ff);border-color:var(--sa,var(--p))}
+.taTools button[data-ta=clear]:hover{background:#fef2f2;border-color:#fca5a5;color:#b91c1c}
+.btn.skip2{background:#e6f1fb!important;color:#0c447c!important;border:2px solid #85b7eb!important;border-radius:999px!important;padding:10px 20px!important;font-weight:900;margin-left:8px;box-shadow:none!important}
+.btn.skip2:hover{background:#d3e6f8!important;border-color:#378add!important}
+
+/* ══════════ v10: 화면 모양 4가지 · 2단계 미리 보기 작게 · 기획 요청 하나 ══════════ */
+.cards.ratio4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+body.pc .cards.ratio4 .card{padding:10px 6px;font-size:.92rem}
+body.pc .cards.ratio4 .card .e{font-size:1.3rem}
+body.pc.pcS2 .pv canvas,body.pc.pcS2 .pv.v916 canvas{width:auto!important;height:auto!important;max-width:100%;max-height:34vh!important;margin:0 auto;display:block}
+body.pc.pcS2 .pvStick{max-width:760px;margin:0 auto 10px}
+.planFix{margin:10px 0 4px;flex-wrap:wrap}
+.planFix .muted{font-weight:600}
+
+/* ══════════ v12: 작은 단계 탭을 큰 제목 바로 아래로 · 미리 보기 아래 장면 정보 · 노래 빼기 ══════════ */
+body.pc .subbar.pcTop{margin:0 0 16px;padding:4px 2px;gap:30px}
+body.pc .subbar.pcTop button{min-height:64px;font-size:1.05rem;white-space:nowrap;padding:12px 10px}
+body.pc .subbar.pcTop button:not(.on){background:color-mix(in srgb,var(--sm) 22%,#fff)}
+body.pc .subbar.pcTop button:nth-child(2):not(.on){background:color-mix(in srgb,var(--sm) 34%,#fff)}
+body.pc .subbar.pcTop button:nth-child(3):not(.on){background:color-mix(in srgb,var(--sm) 46%,#fff)}
+body.pc .subbar.pcTop button:nth-child(4):not(.on){background:color-mix(in srgb,var(--sm) 58%,#fff)}
+body.pc .subbar.pcTop button:nth-child(5):not(.on){background:color-mix(in srgb,var(--sm) 70%,#fff)}
+body.pc .subbar.pcTop button:nth-child(6):not(.on){background:color-mix(in srgb,var(--sm) 82%,#fff)}
+body.pc .subbar.pcTop button:has(~ button.on):not(.on){background:#f0fdf4}
+body.pc .subbar.pcTop:has(button:nth-child(5)){gap:22px}
+body.pc .subbar.pcTop:has(button:nth-child(5)) button{font-size:.98rem;padding:10px 6px}
+body.pc .subbar.pcTop:has(button:nth-child(5)) button:not(:last-child)::after{right:-19px;font-size:.8rem}
+/* 미리 보기 아래 장면 정보 */
+.pcPvInfo{margin-top:10px;background:var(--sb,#f5f3ff);border-radius:14px;padding:10px 14px;font-size:.92rem;color:var(--st,#334155)}
+.pcPvInfo .ly{color:#475569}.pcPvInfo .em{color:#b45309;font-weight:800}
+.pcPvInfo .pb{display:flex;gap:8px;margin-top:8px}
+.pcPvInfo .pb button{flex:1;border:1.5px solid var(--sm,#ddd6fe);background:#fff;color:var(--st,#3c3489);border-radius:12px;padding:8px;font-weight:800;cursor:pointer}
+.pcPvInfo .pb button:hover{border-color:var(--sa,#7c3aed)}
+.pvStick.dark .pcPvInfo{display:none}
+/* 「노래를 틀어 보세요」는 버튼이 아니라 안내 줄 */
+.psLive{align-items:stretch}
+.psNow{flex:1;background:none!important;border-left:4px solid #1d9e75;border-radius:0!important;padding:6px 12px!important;font-weight:800;font-size:.95rem;color:#085041}
+/* 노래 빼기 · 가사 순서 */
+.song .songDel{flex:none;align-self:center;border-color:#fecaca!important;color:#b91c1c!important;background:#fff!important}
+.song .songDel:hover{background:#fef2f2!important}
+.lyrFlow{align-items:center}.lyrFlow .btn{flex:1}.lyrFlow .flowArrow{color:var(--sa,#7c3aed);font-weight:900}
+
+/* ══════════ v13: 2단계 새 화면 (노래·가사 / 장면 만들기 / 장면 넣기) ══════════ */
+.s2grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:16px;align-items:start}
+@media (max-width:1099px){.s2grid{grid-template-columns:1fr}}
+.s2box{margin:0}
+.s2box .songPick3 .btn{font-size:.92rem}
+.s2box textarea#fLyr{min-height:240px}
+.selGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px 14px}
+.selGrid label{display:flex;flex-direction:column;gap:5px;font-weight:800;font-size:.92rem;color:var(--st,var(--ink))}
+.pcSel{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.98rem;background:#fff;font-family:inherit;cursor:pointer}
+.pcSel:focus{outline:0;border-color:var(--sa,var(--p));box-shadow:0 0 0 3px var(--sb,#f5f3ff)}
+details.help{margin-top:10px}
+details.help>summary{cursor:pointer;color:#64748b;font-weight:800;font-size:.88rem;list-style:none}
+details.help>summary::-webkit-details-marker{display:none}
+details.help p{margin:6px 0 0;background:#f8fafc;border-radius:12px;padding:10px 12px;font-size:.9rem;line-height:1.7;color:#475569}
+.picRow{align-items:center;gap:10px;margin:12px 0 0}.picRow .lbl{font-weight:800}
+.curBox{border-color:var(--sa,var(--p));box-shadow:0 0 0 3px var(--sb,#f5f3ff)}
+.curLy{font-size:.98rem;color:#334155;margin:0 0 6px}
+.curPr{font-size:.95rem;color:#475569;background:#f8fafc;border-radius:12px;padding:10px 12px;line-height:1.6}
+.curFlow{display:flex;align-items:center;gap:8px;margin:12px 0 8px}.curFlow .btn{flex:1}
+.curFlow .flowArrow,.lyrFlow .flowArrow{color:var(--sa,#7c3aed);font-weight:900}
+.curMore{display:flex;gap:8px;align-items:center}.curMore .pcSel{flex:1}
+.thGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
+.thGrid .tg{position:relative;aspect-ratio:16/9;border:2px solid var(--line);border-radius:10px;background:#1e1b4b;overflow:hidden;cursor:pointer;padding:0}
+.thGrid .tg.v916{aspect-ratio:9/12}
+.thGrid .tg img{width:100%;height:100%;object-fit:cover;display:block}
+.thGrid .tg i{color:#cbd5e1;font-style:normal;font-size:.8rem}
+.thGrid .tg .k{position:absolute;left:4px;top:4px;background:#0009;color:#fff;border-radius:6px;font-size:.72rem;font-weight:900;padding:0 5px}
+.thGrid .tg .re{position:absolute;right:4px;top:4px;background:#16a34a;color:#fff;border-radius:6px;font-size:.7rem;padding:0 4px}
+.thGrid .tg .okb{position:absolute;right:3px;bottom:2px;font-size:.8rem}
+.thGrid .tg.on{border-color:var(--sd,#185fa5);box-shadow:0 0 0 3px var(--sm,#b5d4f4)}
+.thGrid .tg.ok:not(.on){border-color:#86efac}
+/* ③ 장면 넣기: 왼쪽 미리 보기 · 오른쪽 지금 장면 · 아래 그림 칸 */
+body.pc [data-sub="③ 장면 넣기"]:not(.hide){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:16px;align-items:start}
+body.pc [data-sub="③ 장면 넣기"] > .pvStick{grid-column:1;grid-row:1;margin:0;max-width:none;position:sticky;top:180px}
+body.pc [data-sub="③ 장면 넣기"] > .curBox{grid-column:2;grid-row:1;margin:0}
+body.pc [data-sub="③ 장면 넣기"] > section:not(.curBox){grid-column:1 / -1;margin:0}
+body.pc.pcS2 [data-sub="③ 장면 넣기"] .pv canvas{max-height:44vh!important}
+body.pc.pcS2 .pcPvInfo .pb{display:none}
+
+/* ══════════ v14: 대문 고르기 · 🎭 드라마 모드 ══════════ */
+.kindPick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.kindPick{grid-template-columns:1fr}}
+.kindCard{display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 12px;border-radius:20px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-family:inherit;text-align:center}
+.kindCard .e{font-size:2.6rem}.kindCard b{font-size:1.2rem}.kindCard small{color:#64748b;line-height:1.5}
+.kindCard.mv{background:#eeedfe;border-color:#cecbf6}.kindCard.mv b{color:#3c3489}
+.kindCard.dr{background:#fbeaf0;border-color:#f4c0d1}.kindCard.dr b{color:#72243e}
+.kindCard:not(.soon):hover{transform:translateY(-3px);box-shadow:0 10px 24px #0000001a}
+.kindCard.soon{opacity:.55;cursor:default}
+.drDrop{border:3px dashed var(--sm,#ddd6fe);border-radius:18px;padding:22px;text-align:center;background:var(--sb,#f5f3ff);cursor:pointer;font-size:1.05rem;color:var(--st,#3c3489)}
+.drDrop small{display:block;color:#64748b;margin-top:4px;font-size:.88rem}
+.drDrop:hover{border-color:var(--sa,#7c3aed)}
+.drList{display:flex;flex-direction:column;gap:6px;max-height:520px;overflow:auto}
+.drClip{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:12px;padding:6px 8px;background:#fff}
+.drClip .th{position:relative;width:96px;flex:none;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#1e1b4b;display:flex;align-items:center;justify-content:center;color:#fff}
+.drClip .th img{width:100%;height:100%;object-fit:cover}
+.drClip .th .k{position:absolute;left:3px;top:3px;background:#000a;color:#fff;border-radius:5px;font-size:.72rem;font-weight:900;padding:0 5px}
+.drClip .bd{flex:1;min-width:0;font-size:.9rem;line-height:1.5;overflow:hidden;text-overflow:ellipsis}
+.drClip .ac{display:flex;gap:4px}
+.drMd{min-height:110px;font-family:Consolas,monospace;font-size:.88rem}
+.capPresets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.capP{display:flex;flex-direction:column;align-items:flex-start;gap:4px;border:2px solid var(--line);border-radius:14px;background:#fff;padding:10px;cursor:pointer;text-align:left;font-family:inherit}
+.capP small{color:#b45309;font-weight:800;font-size:.75rem}.capP b{font-size:.92rem}
+.capP .smp{display:block;width:100%;text-align:center;border-radius:8px;padding:8px 4px;font-weight:900;font-size:.95rem;margin:4px 0}
+.capP i{font-style:normal;color:#64748b;font-size:.78rem}
+.capP.on{border-color:var(--sd,#993556);box-shadow:0 0 0 3px var(--sm,#f4c0d1)}
+body.pc .stBody:has(> .pvStick) .capPresets{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+/* ══════════ v15: 고른 것은 진하게 + 살짝 떠오르게 · 드라마 안내 · 자막 모양 팝업 ══════════ */
+body.pc .pickBtn{transition:transform .15s,box-shadow .15s,background .15s}
+body.pc .pickBtn:hover{transform:translateY(-2px);box-shadow:0 6px 14px #0000001a}
+body.pc .pickBtn.on{background:var(--sd)!important;color:#fff!important;box-shadow:0 8px 18px #00000026!important;transform:translateY(-3px)}
+body.pc .chip.on,body.pc .card.on,body.pc .capP.on,body.pc .capPopC.on{transform:translateY(-2px);box-shadow:0 6px 14px #0000001f}
+body.pc .chip:not(.on):hover,body.pc .card:not(.on):hover{transform:translateY(-2px);box-shadow:0 4px 10px #00000014}
+body.pc .chip,body.pc .card{transition:transform .15s,box-shadow .15s}
+.drNote{margin:2px 0 6px;font-size:.84rem;color:#64748b;line-height:1.55}
+.capNow{display:flex;align-items:center;gap:14px;background:var(--sb,#f5f3ff);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.capNow .smp{flex:none;min-width:200px;text-align:center;border-radius:8px;padding:10px 12px;font-weight:900;background-color:#64748b}
+.capPop{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.capPop{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.capPopC{display:flex;flex-direction:column;gap:6px;border:2px solid #e2e8f0;border-radius:16px;background:#fff;padding:8px;cursor:pointer;text-align:left;font-family:inherit;transition:transform .15s,box-shadow .15s}
+.capPopC:hover{transform:translateY(-3px);box-shadow:0 10px 22px #0000001f}
+.capPopC.on{border-color:#993556;box-shadow:0 0 0 3px #f4c0d1}
+.capPopC .scn{position:relative;display:flex;align-items:flex-end;justify-content:center;aspect-ratio:16/9;border-radius:10px;padding:0 8px 12%;overflow:hidden}
+.capPopC .scn .smp{border-radius:6px;padding:6px 10px;font-weight:900;font-size:.95rem;text-align:center}
+.capPopC b{font-size:.92rem}.capPopC i{font-style:normal;color:#64748b;font-size:.8rem}
+/* 대문: 「＋ 새로 만들기」 아래로 펼치는 고르기 (아이콘 크게 · 올리면 떠오름) */
+.kindInline{margin:12px 0 4px;animation:pcIn .25s}
+.kindInline .kindCard{padding:28px 14px;border-width:2.5px;transition:transform .18s,box-shadow .18s}
+.kindInline .kindCard .e{font-size:4rem;line-height:1.1}
+.kindInline .kindCard b{font-size:1.35rem}
+.kindInline .kindCard:not(.soon):hover{transform:translateY(-6px);box-shadow:0 16px 30px #0000002a}
+.kindInline .kindCard.mv:hover{border-color:#7f77dd}.kindInline .kindCard.dr:hover{border-color:#d4537e}
+.homeBig.kindOpen{box-shadow:0 0 0 3px var(--sm,#cecbf6)}
+
+/* ══════════ v16: B.S.S 로고 (BK 날개 + Bang Song Studio) ══════════ */
+header.top{display:flex;align-items:center;gap:10px}
+header.top #homeBtn{margin-left:auto}
+#bssBadge{margin-left:8px;border:0;background:transparent;padding:2px 4px;cursor:pointer;line-height:0;border-radius:12px;transition:transform .15s}
+header.top #homeBtn.hide + #bssBadge{margin-left:auto}
+#bssBadge img{height:44px;width:auto;display:block}
+#bssBadge:hover{transform:translateY(-2px)}
+@media (max-width:700px){#bssBadge img{height:30px}}
+.bssW{font-weight:700;letter-spacing:.2px;color:#334155}
+.bssW b{font-weight:900}
+.bssW .b1{color:#534ab7}.bssW .b2{color:#d4537e}.bssW .b3{color:#1d9e75}
+
+/* ══════════ v17: 홈으로 가운데 · 이름 (드라마/뮤직비디오) · 자막 모양 15가지 · 따라가기 ══════════ */
+header.top{display:grid!important;grid-template-columns:1fr auto 1fr;align-items:center}
+header.top h1{justify-self:start;min-width:0}
+header.top #homeBtn{justify-self:center;margin:0!important;font-size:1rem;padding:8px 20px;border-radius:999px;background:var(--sb,#f5f3ff);color:var(--st,#3c3489);border:1.5px solid var(--sm,#ddd6fe);font-weight:900}
+header.top #homeBtn:hover{transform:translateY(-2px);box-shadow:0 6px 14px #0000001a}
+header.top #homeBtn.hide{display:block!important;visibility:hidden}
+header.top #bssBadge{justify-self:end;grid-column:3;margin:0!important}
+.kTag{font-size:.78rem;font-weight:800;margin-left:8px;padding:2px 10px;border-radius:999px;vertical-align:2px}
+.kTag.dr{background:#fbeaf0;color:#993556}.kTag.mv{background:#eeedfe;color:#534ab7}
+.sheetBox:has(.capPop){max-width:min(1240px,94vw)!important}
+.capPop{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))!important}
+.capPopC .scn .smp,.capNow .smp,.capP .smp{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;font-size:.86rem}
+.capGrp{grid-column:1/-1;margin:6px 0 -2px;font-weight:900;color:#64748b;font-size:.88rem}
+.trkWait{outline:4px dashed #d4537e!important;outline-offset:-4px;cursor:crosshair!important}
+.trkBar{position:fixed;left:50%;top:70px;transform:translateX(-50%);z-index:300;background:#1e293bee;color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;box-shadow:0 8px 24px #0004;display:flex;gap:12px;align-items:center}
+.trkBar button{border:0;border-radius:10px;padding:6px 12px;font-weight:800;cursor:pointer}

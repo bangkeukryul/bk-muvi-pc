@@ -1,0 +1,9 @@
+/* fonts.css — BK뮤비 PC 글꼴 (프로그램 안에 넣어서 인터넷 없이도 보여요)
+   원본: Google Fonts (github.com/google/fonts) · 모두 SIL Open Font License (fonts/OFL.txt) */
+@font-face{font-family:"Noto Sans KR";src:url(fonts/NotoSansKR-VF.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Black Han Sans";src:url(fonts/BlackHanSans-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Jua";src:url(fonts/Jua-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Gowun Batang";src:url(fonts/GowunBatang-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Nanum Pen Script";src:url(fonts/NanumPenScript-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Gaegu";src:url(fonts/Gaegu-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Do Hyeon";src:url(fonts/DoHyeon-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
