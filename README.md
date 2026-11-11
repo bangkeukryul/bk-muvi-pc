@@ -1,9 +1,11 @@
+<img src="logo.png" alt="B.S.S Bang Song Studio" height="80">
+
 # 📺 BangSong Studio (예전 이름: BK뮤비 PC)
 
 🎵 뮤직비디오 · 🎭 드라마를 내 PC에서 만드는 **Windows 프로그램** (Windows 10 · 11)
 
 ## ⬇️ 내려받기
-- 최신 설치 파일: [BKMuviPC-Setup.exe](https://github.com/bangkeukryul/bk-muvi-pc/raw/main/BKMuviPC-Setup.exe) (지금 버전 1.2.0)
+- 최신 설치 파일: [BKMuviPC-Setup.exe](https://github.com/bangkeukryul/bk-muvi-pc/raw/main/BKMuviPC-Setup.exe) (지금 버전 1.3.0)
 - 사용 안내: https://glittery-socks-fe8.notion.site/BK-PC-414c7750d24a8111925efc4bc4c6cb7e
 
 ## 설치
