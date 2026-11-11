@@ -3,7 +3,7 @@
 노래 한 곡(MP3)으로 뮤직비디오 한 편을 만드는 **PC 프로그램** (Windows 10 · 11)
 
 ## ⬇️ 내려받기
-- 최신 설치 파일: [BKMuviPC-Setup.exe](https://github.com/bangkeukryul/bk-muvi-pc/raw/main/BKMuviPC-Setup.exe) (지금 버전 1.0.2)
+- 최신 설치 파일: [BKMuviPC-Setup.exe](https://github.com/bangkeukryul/bk-muvi-pc/raw/main/BKMuviPC-Setup.exe) (지금 버전 1.1.0)
 - 사용 안내: https://glittery-socks-fe8.notion.site/BK-PC-414c7750d24a8111925efc4bc4c6cb7e
 
 ## 설치
